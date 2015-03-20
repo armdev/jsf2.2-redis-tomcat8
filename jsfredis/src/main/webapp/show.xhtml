@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">              
+
+            <ui:define name="content">
+                <br/><br/><br/><br/><br/>
+                <div class="container">
+                    <h3>At the moment redis contains</h3>
+                    <h:dataTable styleClass="table table-striped" value="#{personBean.persons}" var="p" border="1">
+                        <h:column><f:facet name="header">Name</f:facet>#{p.name}</h:column>
+                        <h:column><f:facet name="header">Age</f:facet>#{p.age}</h:column>
+                    </h:dataTable>
+                    <br/><br/>
+                    <h:form>
+                        <h:commandButton action="index"  styleClass="btn btn-default"
+                                         label="Back"
+                                         value="Back"/>
+                    </h:form>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+    </f:view>
+
+</html>

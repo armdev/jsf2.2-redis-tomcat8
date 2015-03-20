@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"     
+      xmlns:jsf="http://xmlns.jcp.org/jsf"         
+      xmlns:passthrough="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">     
+
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">              
+            <ui:define name="content"> 
+                <br/><br/><br/><br/>
+                <div class="container">
+                    <h:form prependId="false">
+                        <p:growl/>
+                        <h3>Import data to Redis(key : value)</h3>
+                        Name: 
+                        <h:inputText id="name" value="#{personBean.person.name}" styleClass="form-control" required="true">
+                            <f:validateLength maximum="100"/>
+                        </h:inputText>
+                        <br/>
+                        Age:
+                        <h:inputText id="age" value="#{personBean.person.age}" styleClass="form-control" required="true" size="6">
+                            <f:validateLongRange maximum="50"/>    
+                        </h:inputText><br/><br/>
+                        <h:commandButton actionListener="#{personBean.createPerson()}" 
+                                         action="show" styleClass="btn btn-danger"
+                                         value="Save"/>
+                    </h:form>
+
+                    <hr/>
+                    <pre>Before start application you should run Redis server and watch: * The server is now ready to accept connections on port 6379</pre>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>
