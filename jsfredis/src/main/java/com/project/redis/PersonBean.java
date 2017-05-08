@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 import redis.clients.jedis.Jedis;
 
@@ -23,7 +22,7 @@ public class PersonBean implements Serializable {
 
     private Jedis jedis;
 
-    private Set<String> set = new HashSet<String>();
+    private Set<String> set = new HashSet<>();
 
     public PersonBean() {
     }
@@ -47,11 +46,10 @@ public class PersonBean implements Serializable {
     }
 
     public List<Person> getPersons() {
-        List<Person> persons = new ArrayList<Person>();
-        for (String key : set) {
+        List<Person> persons = new ArrayList<>();
+        set.forEach((key) -> {
             persons.add(Person.fromString(jedis.get(key)));
-        }
-        //System.out.println("persons " + persons.size());
+        }); //System.out.println("persons " + persons.size());
 
         return persons;
     }

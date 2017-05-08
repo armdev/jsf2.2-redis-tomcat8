@@ -2,13 +2,15 @@ package com.project.redis;
 
 import java.io.Serializable;
 import java.util.StringTokenizer;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.validation.constraints.Size;
 
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static Person fromString(String string) {
+        StringTokenizer tokens = new StringTokenizer(string, ",");
+        return new Person(tokens.nextToken(), Integer.parseInt(tokens.nextToken().trim()));
+    }
 
     private String name;
 
@@ -43,8 +45,4 @@ public class Person implements Serializable {
         return name + ", " + age;
     }
 
-    public static Person fromString(String string) {
-        StringTokenizer tokens = new StringTokenizer(string, ",");
-        return new Person(tokens.nextToken(), Integer.parseInt(tokens.nextToken().trim()));
-    }
 }
